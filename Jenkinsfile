@@ -13,8 +13,7 @@ pipeline {
             steps {
             withCredentials([usernamePassword(credentialsId: 'dockerhub_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
             {
-               sh
-                ''' 
+               sh ''' 
                 docker login -u $USERNAME -p $PASSWORD 
                 docker image push freedom:v1
                '''
