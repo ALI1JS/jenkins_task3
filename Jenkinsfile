@@ -1,11 +1,11 @@
-/* groovylint-disable-next-line CompileStatic */
-pipeline{
-    agent  any
+pipeline {
+    agent any
 
     stages {
-        stage('Build Stage')
-        {
-            sh 'docker build -t freedom_image:v1 .'
+        stage('Build') {
+            steps {
+               sh 'docker build -t freedom:v1 .'
+            }
         }
     }
 }
