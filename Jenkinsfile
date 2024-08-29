@@ -21,8 +21,8 @@ pipeline {
                 docker login -u $USERNAME -p $PASSWORD
 
                 docker push $USERNAME/freedom:v1
-                
-                sh 'docker image rm freedom:v1 $USERNAME/freedom:v1'
+
+                docker image rm freedom:v1 $USERNAME/freedom:v1
                '''
             }
             }
