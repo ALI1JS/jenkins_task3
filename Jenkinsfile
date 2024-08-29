@@ -15,7 +15,7 @@ pipeline {
             {
                sh ''' 
                 docker login -u $USERNAME -p $PASSWORD 
-                docker push freedom:v1
+                docker push $USERNAME/freedom:v1
                '''
             }
          }
