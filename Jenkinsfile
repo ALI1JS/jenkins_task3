@@ -4,23 +4,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-               sh 'docker build -t freedom:v1 .'
+                sh '''
+                docker build -t freedom:v1 .
+                docker tag freedom:v1 $USERNAME/freedom:v1
+               '''
             }
         }
 
-        stage ('Push')
+        stage('Push')
         {
             steps {
-            withCredentials([usernamePassword(credentialsId: 'dockerhub_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
             {
-               sh ''' 
+                    sh '''
                 docker login -u $USERNAME -p $PASSWORD
-                docker tag freedom:v1 $USERNAME/freedom:v1
                 docker push $USERNAME/freedom:v1
+                sh 'docker image rm freedom:v1 $USERNAME/freedom:v1'
                '''
             }
-            sh 'docker image rm freedom:v1'
-         }
+            }
         }
     }
 }
