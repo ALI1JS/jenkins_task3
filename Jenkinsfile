@@ -19,6 +19,7 @@ pipeline {
                 docker push $USERNAME/freedom:v1
                '''
             }
+            sh 'docker image rm freedom:v1'
          }
         }
     }
