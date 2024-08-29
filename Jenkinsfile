@@ -44,7 +44,7 @@ pipeline {
             echo 'Slack Notifications'
             slackSend(
             channel: '#jenkins_test',
-            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} \n build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} \n build ${env.BUILD_NUMBER} \n Status: ${currentBuild.currentResult} \n More info at: ${env.BUILD_URL}"
         )
         }
     }
