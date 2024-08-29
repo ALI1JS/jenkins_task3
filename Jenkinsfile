@@ -27,5 +27,15 @@ pipeline {
             }
             }
         }
+
+        stage('deploy')
+        {
+            steps {
+                sh '''
+                  docker pull alijs256/freedom:v1
+                  docker run -d --name freePalestine -p 80:80 alijs256/freedom:v1
+                '''
+            }
+        }
     }
 }
